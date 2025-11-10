@@ -14,7 +14,6 @@ def lastresort(github):
             with open("repos.txt", 'r') as file:
                 for repo in file:
                     os.system(f"git clone {repo}")
-    else:
-        print("No argument given. Check arguments with -h/--help flag.")
+
 if __name__ == "__main__":
     arguably.run()
