@@ -17,11 +17,13 @@ def autogit(*, _dir="repos", _list="repos.txt"):
         with open(_list, 'r') as file:
                         for repo in file:
                                 clean_repo = repo.strip()
+                                repo_name = clean_repo.split('.git')[0].split('/')[-1]
+                                
                                 print(f"cloning {clean_repo}...")
                                 try:
-                                        Repo.clone_from(clean_repo, _dir)
-                                except:
-                                        print(f"an error occured while cloning {clean_repo}.")
+                                        Repo.clone_from(clean_repo, os.path.join(_dir, repo_name))
+                                except Exception as e:
+                                        print(f"an error occured while cloning {clean_repo}:\n {e}")
                                 else:
                                         print("done!")
 if __name__ == "__main__":
