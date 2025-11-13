@@ -7,13 +7,18 @@ import string
 from git import Repo
 
 @arguably.command
-def autogit(*, _dir="repos", _list="repos.txt"):
-        """autogit.py - clone repos from a text file"""
+def autogit(_dir="repos", _list="repos.txt"):
+        """
+        autogit.py - clone repos from a text file
+        Args:
+            _dir: Where to clone repositories
+            _list: Text file with repositories, divided by new lines
+        """
         print(f"cloning repos from '{_list}'...")
         if os.path.isdir(_dir):
                 pass
         else:
-                os.system(f"mkdir {_dir}")
+                os.makedirs(_dir)
         with open(_list, 'r') as file:
                         for repo in file:
                                 clean_repo = repo.strip()
